@@ -17,3 +17,6 @@ _ReSharper*
 *.vs10x
 CI
 TestResult.xml
+/*.ncrunchsolution
+/src/GildedRose.Console/*.ncrunchproject
+/src/GildedRose.Tests/*.ncrunchproject

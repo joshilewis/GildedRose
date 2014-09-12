@@ -8,7 +8,7 @@ namespace GildedRose.Tests
     public class ProgramTests
     {
         [Test]
-        public void Test()
+        public void SafetyNetTest()
         {
             var expected = new List<Item>()
             {
@@ -49,6 +49,7 @@ namespace GildedRose.Tests
             Assert.That(program.Items, Is.EquivalentTo(expected).Using(new EqualityComparer()));
 
         }
+
     }
 
     public class EqualityComparer : IEqualityComparer<Item>
