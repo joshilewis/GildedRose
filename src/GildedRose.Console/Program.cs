@@ -44,93 +44,64 @@ namespace GildedRose.Console
                     item.SellIn = item.SellIn - 1;
                 }
 
-                ChangeQualityBasedOnName(item);
-            }
-        }
-
-        private void ChangeQualityBasedOnName(Item item)
-        {
-            switch (item.Name)
-            {
-                case "Aged Brie":
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
-
-                    if (item.SellIn >= 0) return;
-
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
-
-
-                    return;
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-
-                        if (item.SellIn < 11)
+                switch (item.Name)
+                {
+                    case "Aged Brie":
+                        if (item.Quality < 50)
                         {
-                            if (item.Quality < 50)
+                            item.Quality = item.Quality + 1;
+                        }
+
+                        break;
+
+                    case "Backstage passes to a TAFKAL80ETC concert":
+                        if (item.Quality < 50)
+                        {
+                            item.Quality = item.Quality + 1;
+
+                            if (item.SellIn < 11)
                             {
-                                item.Quality = item.Quality + 1;
+                                if (item.Quality < 50)
+                                {
+                                    item.Quality = item.Quality + 1;
+                                }
+                            }
+
+                            if (item.SellIn < 6)
+                            {
+                                if (item.Quality < 50)
+                                {
+                                    item.Quality = item.Quality + 1;
+                                }
                             }
                         }
 
-                        if (item.SellIn < 6)
+                        if (item.SellIn >= 0) break;
+                        item.Quality = item.Quality - item.Quality;
+                        break;
+
+                    case "Conjured Mana Cake":
+                        item.Quality = item.Quality - 2;
+                        break;
+
+                    default:
+                        if (item.Quality <= 0) break;
+
+                        if (item.Name != "Sulfuras, Hand of Ragnaros")
                         {
-                            if (item.Quality < 50)
-                            {
-                                item.Quality = item.Quality + 1;
-                            }
+                            item.Quality = item.Quality - 1;
                         }
-                    }
+                        if (item.SellIn >= 0) break;
+                        if (item.Quality <= 0) break;
 
-            if (item.SellIn >= 0) return;
-            item.Quality = item.Quality - item.Quality;
-
-            return;
-                case "Conjured Mana Cake":
-                    item.Quality = item.Quality - 2;
-            if (item.SellIn >= 0) return;
-                    if (item.Quality <= 0) return;
-
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-                    return;
-                default:
-                    if (item.Quality <= 0) return;
-
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-            if (item.SellIn >= 0) return;
-                    if (item.Quality <= 0) return;
-
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-                    return;
+                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        {
+                            item.Quality = item.Quality - 1;
+                        }
+                        break;
+                }
             }
-
         }
 
     }
-
-    public class Item
-    {
-        public string Name { get; set; }
-
-        public int SellIn { get; set; }
-
-        public int Quality { get; set; }
-    }
-
 }
