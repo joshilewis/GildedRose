@@ -210,6 +210,22 @@ namespace GildedRose.Tests
             ActAndAssert(initial, expected);
         }
 
+        [Test]
+        public void ConjuredItemsQualityShouldDecreaseTwiceAsFast()
+        {
+            var expected = new List<Item>()
+            {
+                new Item { Name = "Conjured Mana Cake", SellIn = 2, Quality = 4 }
+            };
+
+            var initial = new List<Item>
+            {
+                new Item { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 }
+            };
+
+            ActAndAssert(initial, expected);
+        }
+
         private void ActAndAssert(List<Item> initial, List<Item> expected)
         {
             var program = new Program()
