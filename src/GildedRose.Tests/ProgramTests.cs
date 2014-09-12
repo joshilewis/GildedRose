@@ -22,7 +22,7 @@ namespace GildedRose.Tests
                     SellIn = 14,
                     Quality = 21
                 },
-                new Item {Name = "Conjured Mana Cake", SellIn = 2, Quality = 5}
+                new Item {Name = "Conjured Mana Cake", SellIn = 2, Quality = 4}
             };
 
             var program = new Program()
@@ -210,7 +210,6 @@ namespace GildedRose.Tests
             ActAndAssert(initial, expected);
         }
 
-        [Ignore]
         [Test]
         public void ConjuredItemsQualityShouldDecreaseTwiceAsFast()
         {
