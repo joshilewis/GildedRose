@@ -45,34 +45,6 @@ namespace GildedRose.Console
                 }
 
                 ChangeQualityBasedOnName(item);
-
-                ChangeQualityBasedOnSellIn(item);
-            }
-        }
-
-        private void ChangeQualityBasedOnSellIn(Item item)
-        {
-            if (item.SellIn >= 0) return;
-
-            switch (item.Name)
-            {
-                case "Aged Brie":
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
-                    }
-                    return;
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    item.Quality = item.Quality - item.Quality;
-                    return;
-                default:
-                    if (item.Quality <= 0) return;
-
-                    if (item.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        item.Quality = item.Quality - 1;
-                    }
-                    return;
             }
         }
 
@@ -85,6 +57,15 @@ namespace GildedRose.Console
                     {
                         item.Quality = item.Quality + 1;
                     }
+
+                    if (item.SellIn >= 0) return;
+
+                    if (item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
+                    }
+
+
                     return;
                 case "Backstage passes to a TAFKAL80ETC concert":
                     if (item.Quality < 50)
@@ -107,11 +88,29 @@ namespace GildedRose.Console
                             }
                         }
                     }
-                    return;
+
+            if (item.SellIn >= 0) return;
+            item.Quality = item.Quality - item.Quality;
+
+            return;
                 case "Conjured Mana Cake":
                     item.Quality = item.Quality - 2;
+            if (item.SellIn >= 0) return;
+                    if (item.Quality <= 0) return;
+
+                    if (item.Name != "Sulfuras, Hand of Ragnaros")
+                    {
+                        item.Quality = item.Quality - 1;
+                    }
                     return;
                 default:
+                    if (item.Quality <= 0) return;
+
+                    if (item.Name != "Sulfuras, Hand of Ragnaros")
+                    {
+                        item.Quality = item.Quality - 1;
+                    }
+            if (item.SellIn >= 0) return;
                     if (item.Quality <= 0) return;
 
                     if (item.Name != "Sulfuras, Hand of Ragnaros")
@@ -122,6 +121,7 @@ namespace GildedRose.Console
             }
 
         }
+
     }
 
     public class Item
