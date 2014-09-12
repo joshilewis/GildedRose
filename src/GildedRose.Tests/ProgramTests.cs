@@ -210,6 +210,7 @@ namespace GildedRose.Tests
             ActAndAssert(initial, expected);
         }
 
+        [Ignore]
         [Test]
         public void ConjuredItemsQualityShouldDecreaseTwiceAsFast()
         {
