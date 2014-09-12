@@ -53,71 +53,70 @@ namespace GildedRose.Console
         {
             if (item.SellIn >= 0) return;
 
-            if (item.Name == "Aged Brie")
+            switch (item.Name)
             {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-                }
-                return;
-            }
+                case "Aged Brie":
+                    if (item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
+                    }
+                    return;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    item.Quality = item.Quality - item.Quality;
+                    return;
+                default:
+                    if (item.Quality <= 0) return;
 
-            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-            {
-                item.Quality = item.Quality - item.Quality;
-                return;
-            }
-
-            if (item.Quality <= 0) return;
-
-            if (item.Name != "Sulfuras, Hand of Ragnaros")
-            {
-                item.Quality = item.Quality - 1;
+                    if (item.Name != "Sulfuras, Hand of Ragnaros")
+                    {
+                        item.Quality = item.Quality - 1;
+                    }
+                    return;
             }
         }
 
         private void ChangeQualityBasedOnName(Item item)
         {
-            if (item.Name == "Aged Brie")
+            switch (item.Name)
             {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-                }
-                return;
-            }
-
-            if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
-            {
-                if (item.Quality < 50)
-                {
-                    item.Quality = item.Quality + 1;
-
-                    if (item.SellIn < 11)
+                case "Aged Brie":
+                    if (item.Quality < 50)
                     {
-                        if (item.Quality < 50)
+                        item.Quality = item.Quality + 1;
+                    }
+                    return;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    if (item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
+
+                        if (item.SellIn < 11)
                         {
-                            item.Quality = item.Quality + 1;
+                            if (item.Quality < 50)
+                            {
+                                item.Quality = item.Quality + 1;
+                            }
+                        }
+
+                        if (item.SellIn < 6)
+                        {
+                            if (item.Quality < 50)
+                            {
+                                item.Quality = item.Quality + 1;
+                            }
                         }
                     }
+                    return;
+                default:
+                    if (item.Quality <= 0) return;
 
-                    if (item.SellIn < 6)
+                    if (item.Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        if (item.Quality < 50)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
+                        item.Quality = item.Quality - 1;
                     }
-                }
-                return;
+                    return;
             }
 
-            if (item.Quality <= 0) return;
-
-            if (item.Name != "Sulfuras, Hand of Ragnaros")
-            {
-                item.Quality = item.Quality - 1;
-            }
         }
     }
 
